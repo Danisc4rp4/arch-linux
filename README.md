@@ -11,3 +11,17 @@ https://wiki.archlinux.org/title/Installation_guide
 From this guide, I create a bootable installation media (SD card in my case).
 https://wiki.archlinux.org/title/USB_flash_installation_medium
 
+## Installation on my DELL XPS 13
+localectl
+loadkeys uk
+ip link
+iwctl
+  device list
+  station wlan0 connect Daniscarpa_5G
+  .. digit passphrase ..
+ping google.com
+... OK ..
+timedatectl set-timezone Europe/Oslo
+fdisk -l
+
+
