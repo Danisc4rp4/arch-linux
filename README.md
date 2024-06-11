@@ -3,6 +3,8 @@ I am reporting here all the steps for an Arch Linux installation.
 
 sudo diskutil eraseDisk FAT32 ArchLinux /dev/disk4
 
+https://gist.github.com/abelcallejo/846b9b21b35f401f8df733ffd78165ec
+
 I follow this guide for the installation:
 https://wiki.archlinux.org/title/Installation_guide
 
