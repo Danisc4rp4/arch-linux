@@ -22,6 +22,19 @@ iwctl
 ping google.com
 ... OK ..
 timedatectl set-timezone Europe/Oslo
+
 fdisk -l
+fdisk -l /dev/nvme0n1
+
+nvme id-ns -H /dev/nvme0n1 | grep "Relative Performance"
+nvme format --lbaf=1 /dev/nvme0n1
+
+fdisk /dev/nvme0n1
+  g
+  n
+    last sector: +4G
+  n
+    all default
+  w
 
 
