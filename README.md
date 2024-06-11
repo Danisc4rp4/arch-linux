@@ -37,4 +37,9 @@ fdisk /dev/nvme0n1
     all default
   w
 
+mount /dev/nvme0n1p2 /mnt
+swapon /dev/nvme0n1p1
+
+pacstrap -K /mnt base linux linux-firmware
+
 
