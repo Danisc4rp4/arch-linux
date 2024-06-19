@@ -14,40 +14,31 @@ From this guide, I create a bootable installation media (SD card in my case).
 https://wiki.archlinux.org/title/USB_flash_installation_medium
 
 ## Installation on my DELL XPS 13
+´´´
 localectl
-
 loadkeys uk
-
 ip link
-
 iwctl
 
   device list
-
   station wlan0 connect Daniscarpa_5G
-  
   .. digit passphrase ..
-
+  
 ping google.com
-
 ... OK ..
-
 timedatectl set-timezone Europe/Oslo
-
 fdisk -l
-
 fdisk -l /dev/nvme0n1
-
 nvme id-ns -H /dev/nvme0n1 | grep "Relative Performance"
-
 nvme format --lbaf=1 /dev/nvme0n1
-
 fdisk /dev/nvme0n1
   g
   n
-    last sector: +4G
+  last sector: +4G
+  
   n
-    all default
+  all default
+  
   w
 
 mount /dev/nvme0n1p2 /mnt
@@ -56,9 +47,8 @@ swapon /dev/nvme0n1p1
 pacstrap -K /mnt base linux linux-firmware
 
 systemctl enable sysyemd-resolved
-
 systemctl enable sysyemd-networkd
-
+´´´
 
 
 
