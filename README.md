@@ -21,6 +21,7 @@ loadkeys uk
 ip link
 
 iwctl
+
   device list
 
   station wlan0 connect Daniscarpa_5G
