@@ -14,7 +14,7 @@ From this guide, I create a bootable installation media (SD card in my case).
 https://wiki.archlinux.org/title/USB_flash_installation_medium
 
 ## Installation on my DELL XPS 13
-´´´shell
+´´´console
 localectl
 loadkeys uk
 ip link
