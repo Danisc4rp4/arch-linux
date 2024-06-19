@@ -36,7 +36,7 @@ timedatectl set-timezone Europe/Oslo
 
 fdisk -l
 
-fdisk -l /dev/nvme0n1
+fdisk /dev/nvme0n1
 
 nvme id-ns -H /dev/nvme0n1 | grep "Relative Performance"
 
