@@ -6,10 +6,26 @@ I follow [this guide](https://wiki.archlinux.org/title/Installation_guide) for t
 
 ## Create the bootable SD card
 
-Format the SD card 
+Dowload the linux iso image from [here](https://archlinux.org/download/).
+
+Convert the iso image into img.dmg .
+```
+hdiutil convert -format UDRW -o linux.img linux.iso
+```
+
+Insert the SD card and umount it.
+```
+diskutil unmountDisk /dev/disk4
+```
+
+Format the SD card.
 ```
 sudo diskutil eraseDisk FAT32 ArchLinux /dev/disk4
+```
 
+Write the image into the SD card.
+```
+time sudo dd if=linux.img.dmg of=/dev/disk4 bs=1m
 ```
 
 
@@ -52,9 +68,10 @@ nvme format --lbaf=1 /dev/nvme0n1
 ```
 
 Create the 3 partitions, EFI, swap, linux sys.
-p1: Linux swap
-p2: EFI
-p3: Linux root
+
+p1: Linux swap. Not sure if this has to be the first, and how important it is, and how much this improves the performance. 
+p2: EFI. Not sure if this is required. If I use a boot loader, it might be enough if I have a single partition. Also LVM can be used. Look into the difference, also if the fs matters.
+p3: Linux root partition.
 ```
 fdisk /dev/nvme0n1
   g
