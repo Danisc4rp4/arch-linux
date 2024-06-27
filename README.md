@@ -51,7 +51,13 @@ ping google.com
 ... OK ..
 ```
 
-Set the timezone to Oslo.
+Once the connection to the internet is established, check if the system is synced by the service systemd-timesyncd automatically.
+```
+systemctl status systemd-timesyncd
+timedatectl
+```
+
+Or set timezone manually.
 ```
 timedatectl set-timezone Europe/Oslo
 ```
