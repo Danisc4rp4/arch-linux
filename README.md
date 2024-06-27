@@ -45,6 +45,7 @@ iwctl
   device list
   station wlan0 connect Daniscarpa_5G
   .. digit passphrase ..
+  exit
   
 ping google.com
 ... OK ..
