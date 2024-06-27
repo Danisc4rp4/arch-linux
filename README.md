@@ -175,6 +175,12 @@ systemctl enable sysyemd-resolved
 systemctl enable sysyemd-networkd
 ```
 
+Install boot-loader (GRUB in my case).
+```
+pacman -Sy grub efibootmgr
+grub-install --target=x86_64-efi --efi-directory=boot --bootloader-id=GRUB
+```
+
 
 
 
