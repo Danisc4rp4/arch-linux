@@ -37,13 +37,13 @@ localectl
 loadkeys uk
 ```
 
-Check the network devices names.
+Connect to the Wifi. Mine is BetaOrix, from the names of my dogs :)
 ```
 ip link
 iwctl
 
   device list
-  station wlan0 connect Daniscarpa_5G
+  station wlan0 connect BetaOrix5G
   .. digit passphrase ..
   exit
   
