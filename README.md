@@ -114,8 +114,8 @@ mkfs.fat -F 32 /dev/nvme0n1p2
 Mount the partitions and enable swap.
 ```
 swapon /dev/nvme0n1p1
-mount --mkdir /dev/nvme0n1p2 /mnt/boot
 mount /dev/nvme0n1p3 /mnt
+mount --mkdir /dev/nvme0n1p2 /mnt/boot
 ```
 
 Install the packages base, linux kernel and firmware.
@@ -171,14 +171,21 @@ echo "xps" > /etc/hostname
 
 Enable the services for networking.
 ```
-systemctl enable sysyemd-resolved
-systemctl enable sysyemd-networkd
+systemctl enable systemd-resolved
+systemctl enable systemd-networkd
 ```
 
 Install boot-loader (GRUB in my case).
 ```
 pacman -Sy grub efibootmgr
-grub-install --target=x86_64-efi --efi-directory=boot --bootloader-id=GRUB
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB --removable
+```
+
+Exit chroot and reboot.
+```
+exit
+umount -R /mnt
+reboot
 ```
 
 
