@@ -166,7 +166,7 @@ echo "KEYMAP=uk" > /etc/vconsole.conf
 
 Create the hostname file and set your hostname.
 ```
-echo "xps" >> /etc/hostname
+echo "xps" > /etc/hostname
 ```
 
 Enable the services for networking.
