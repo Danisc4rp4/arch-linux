@@ -57,9 +57,10 @@ systemctl status systemd-timesyncd
 timedatectl
 ```
 
-Or set timezone manually.
+Set timezone and verify changes.
 ```
 timedatectl set-timezone Europe/Oslo
+timedatectl
 ```
 
 List the disk partitions.
