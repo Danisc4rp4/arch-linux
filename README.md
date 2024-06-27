@@ -150,7 +150,7 @@ systemctl enable systemd-timesyncd
 
 Decomment the locale for the language English British and generate the locales.
 ```
-sed -I "s/#en_GB.UTF/en_GB.UTF/g" /etc/locale.gen
+sed -i "s/#en_GB.UTF/en_GB.UTF/g" /etc/locale.gen
 locale-gen
 ```
 
