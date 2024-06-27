@@ -156,8 +156,7 @@ locale-gen
 
 Create the locale.conf(5) file, and set the LANG variable.
 ```
-/etc/locale.conf
-LANG=en_GB.UTF-8
+echo "LANG=en_GB.UTF-8" > /etc/locale.conf
 ```
 
 Make the change of the keyboard layout persistent, editing the vconsole.conf file.
