@@ -93,6 +93,18 @@ fdisk /dev/nvme0n1
   
   n
   all default
+
+  t
+  1
+  19
+
+  t
+  2
+  1
+
+  t
+  3
+  23
   
   w
 ```
