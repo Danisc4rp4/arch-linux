@@ -164,20 +164,25 @@ systemctl enable systemd-timesyncd
 Decomment the locale for the language English British and generate the locales.
 ```
 sed -i "s/#en_GB.UTF/en_GB.UTF/g" /etc/locale.gen
+```
+You can also edit the file using vim.
+
+Generate the locales.
+```
 locale-gen
 ```
 
-Create the locale.conf(5) file, and set the LANG variable.
+Create the locale.conf(5) file, and set the LANG variable (you can use vim).
 ```
 echo "LANG=en_GB.UTF-8" > /etc/locale.conf
 ```
 
-Make the change of the keyboard layout persistent, editing the vconsole.conf file.
+Make the change of the keyboard layout persistent, editing the vconsole.conf file (you can use vim).
 ```
 echo "KEYMAP=uk" > /etc/vconsole.conf
 ```
 
-Create the hostname file and set your hostname.
+Create the hostname file and set your hostname (you can use vim).
 ```
 echo "xps" > /etc/hostname
 ```
