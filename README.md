@@ -29,7 +29,7 @@ time sudo dd if=linux.img.dmg of=/dev/disk4 bs=1m
 ```
 
 
-## Installation on my DELL XPS 13
+## Installation on my DELL XPS 13 (No encryption)
 
 Change the keyboard to uk.
 ```
@@ -214,12 +214,18 @@ Set root password.
 passwd
 ```
 
+Remove the SD card.
+
 Exit chroot and reboot.
 ```
 exit
 umount -R /mnt
 reboot
 ```
+
+Use your Arch Linux Machine <3 <3 <3
+
+
 
 
 
