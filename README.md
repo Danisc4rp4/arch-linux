@@ -199,6 +199,11 @@ pacman -Sy grub efibootmgr
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB --removable
 ```
 
+Install iwd for Wifi connection.
+```
+pacman -Sy iwd
+```
+
 Set root password.
 ```
 passwd
