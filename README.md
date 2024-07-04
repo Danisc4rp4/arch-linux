@@ -204,11 +204,6 @@ Install iwd for Wifi connection.
 pacman -Sy iwd
 ```
 
-Install dnsutils to be able to use dig to resolve hostnames.
-```
-pacman -Sy dnsutils
-```
-
 Set root password.
 ```
 passwd
