@@ -95,36 +95,28 @@ nvme id-ns -H /dev/nvme0n1 | grep "Relative Performance"
 nvme format --lbaf=1 /dev/nvme0n1
 ```
 
-Create the 3 partitions, EFI, swap, linux sys.
+Create the partitions
 
-p1: Linux swap. Not sure if this has to be the first, and how important it is, and how much this improves the performance. 
-p2: EFI. Not sure if this is required. If I use a boot loader, it might be enough if I have a single partition. Also LVM can be used. Look into the difference, also if the fs matters.
-p3: Linux root partition.
+Since we now want to introduce encryption, the best way is to include Swap and root as logical (using LVM) into p2, so that we can encrypt p2 and use a single decryption. The first sector must start with your disk sector size to avoid disallignment (mine is 4096).
 ```
 fdisk /dev/nvme0n1
   g
 
   n
+  1
   start sector: 4096
-  last sector: +4G
-
-  n
   last sector: +1G
-  
+
   n
   all default
 
   t
   1
-  19
-
-  t
-  2
   1
 
   t
-  3
-  23
+  2
+  30
   
   w
 ```
