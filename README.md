@@ -157,32 +157,9 @@ mkfs.fat -F 32 /dev/nvme0n1p1
 mount /dev/nvme0n1p1 /mnt/boot
 ```
 
-Initialise the swap.
-```
-mkswap /dev/vg0/swap
-swapon /dev/vg0/swap
-```
-
-Create ext4 fs for the root partition.
-```
-mkfs.ext4 /dev/nvme0n1p3
-```
-
-Create the fs for the EFI partition.
-```
-mkfs.fat -F 32 /dev/nvme0n1p2
-```
-
-Mount the partitions and enable swap.
-```
-swapon /dev/nvme0n1p1
-mount /dev/nvme0n1p3 /mnt
-mount --mkdir /dev/nvme0n1p2 /mnt/boot
-```
-
 Install the packages base, linux kernel and firmware.
 ```
-pacstrap -K /mnt base linux linux-firmware vim
+pacstrap -K /mnt base linux linux-firmware btrfs-progs intel-ucode neovim networkmanager
 ```
 
 Create the fstab file, the table of partitions with UUID, directory, fs type, fs check (0 disabled, 1 root, 2 other)
@@ -193,6 +170,19 @@ genfstab -U /mnt >> /mnt/etc/fstab
 Chroot into the system.
 ```
 arch-chroot /mnt
+```
+
+Create the swap file
+```
+truncate -s 0 /swapfile
+chattr +C /swapfile
+fallocate -l 16G /swapfile
+chmod 600 /swapfile
+
+mkswap /swapfile
+swapon /swapfile
+
+echo "/swapfile none swap defaults 0 0" >> /etc/fstab
 ```
 
 Set the system time.
