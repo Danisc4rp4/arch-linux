@@ -30,11 +30,6 @@ Insert the SD card and umount it.
 diskutil unmountDisk /dev/disk4
 ```
 
-Format the SD card.
-```
-sudo diskutil eraseDisk FAT32 ArchLinux /dev/disk4
-```
-
 Write the image into the SD card.
 ```
 time sudo dd if=linux.img.dmg of=/dev/disk4 bs=1m
