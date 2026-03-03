@@ -52,6 +52,7 @@ loadkeys uk
 Connect to the Wifi. Mine is BetaOrix, from the names of my dogs :)
 ```
 ip link
+ip link wlan0 up
 iwctl
 
   device list
