@@ -41,7 +41,14 @@ time sudo dd if=archlinux-2026.03.01-x86_64.img.dmg of=/dev/rdisk4 bs=1m status=
 ```
 
 
-## Installation on my DELL XPS 13 (No encryption)
+## Installation on my DELL XPS 13 (With encryption.. work in progress..)
+
+Instructions for Dell XPS
+- Press F12 when before the Dell logo at startup.
+- Enter BIOS setup
+- Enable miscellaneus devices - SDD boot
+- Restart and boot from SSD
+- You can start installation below.
 
 Change the keyboard to uk.
 ```
