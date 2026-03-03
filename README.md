@@ -12,10 +12,17 @@ Convert the iso image into img.dmg .
 ```
 hdiutil convert -format UDRW -o linux.img linux.iso
 ```
+
 If you get "hdiutil: convert failed - Resource temporarily unavailable" then:
 ```
 hdiutil info
 hdiutil detach /dev/diskN
+```
+
+Find your SD card
+```
+diskutil list
+diskutil info /dev/disk4
 ```
 
 Insert the SD card and umount it.
