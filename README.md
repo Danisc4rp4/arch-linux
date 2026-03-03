@@ -136,6 +136,25 @@ You can view cryptlvm vault in /dev/mapper (ls).
 Create physical volume, volume group and logical volumes
 ```
 mkfs.btrfs -L ARCH /dev/mapper/cryptlvm
+mount /dev/mapper/cryptlvm /mnt
+btrfs subvolume create /mnt/@
+btrfs subvolume create /mnt/@home
+btrfs subvolume create /mnt/@log
+btrfs subvolume create /mnt/@pkg
+umount /mnt
+```
+
+Mount all
+```
+mount -o compress=zstd,subvol=@ /dev/mapper/cryptlvm /mnt
+
+mkdir -p /mnt/{home,var/log,var/cache/pacman/pkg,boot}
+mount -o compress=zstd,subvol=@home /dev/mapper/cryptlvm /mnt/home
+mount -o compress=zstd,subvol=@log /dev/mapper/cryptlvm /mnt/var/log
+mount -o compress=zstd,subvol=@pkg /dev/mapper/cryptlvm /mnt/var/cache/pacman/pkg
+
+mkfs.fat -F 32 /dev/nvme0n1p1
+mount /dev/nvme0n1p1 /mnt/boot
 ```
 
 Initialise the swap.
