@@ -97,7 +97,7 @@ nvme format --lbaf=1 /dev/nvme0n1
 
 Create the partitions
 
-Since we now want to introduce encryption, the best way is to include Swap and root as logical (using LVM, type 44) into p2, so that we can encrypt p2 and use a single decryption. The first sector must start with your disk sector size to avoid disallignment (mine is 4096).
+Since we now want to introduce encryption, the best way is to include Swap and root into the same partition encrypted once. The first sector must start with your disk sector size to avoid disallignment (mine is 4096). For p2 I want to use btrfs instead of LVM because I want to use minikube in my local machine and I want dynamic sizes for virtual volumes.
 ```
 fdisk /dev/nvme0n1
   g
@@ -116,7 +116,7 @@ fdisk /dev/nvme0n1
 
   t
   2
-  44
+  20
   
   w
 ```
@@ -135,20 +135,18 @@ You can view cryptlvm vault in /dev/mapper (ls).
 
 Create physical volume, volume group and logical volumes
 ```
-pvcreate /dev/mapper/cryptlvm
-vgcreate vg0 /dev/mapper/cryptlvm
-lvcreate -L 16G vg0 -n swap
-lvcreate -l 100%FREE vg0 -n root
+mkfs.btrfs -L ARCH /dev/mapper/cryptlvm
+```
+
+Initialise the swap.
+```
+mkswap /dev/vg0/swap
+swapon /dev/vg0/swap
 ```
 
 Create ext4 fs for the root partition.
 ```
 mkfs.ext4 /dev/nvme0n1p3
-```
-
-Initialise the swap.
-```
-mkswap /dev/nvme0n1p1
 ```
 
 Create the fs for the EFI partition.
