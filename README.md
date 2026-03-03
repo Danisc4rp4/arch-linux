@@ -37,9 +37,7 @@ diskutil unmountDisk /dev/disk4
 
 Write the image into the SD card.
 ```
-time sudo dd if=linux.img.dmg of=/dev/disk4 bs=1m
-sync
-diskutil eject /dev/disk4
+time sudo dd if=archlinux-2026.03.01-x86_64.img.dmg of=/dev/rdisk4 bs=1m status=progress
 ```
 
 
