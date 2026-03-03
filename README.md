@@ -25,6 +25,11 @@ diskutil list
 diskutil info /dev/disk4
 ```
 
+Format
+```
+sudo diskutil eraseDisk FAT32 ArchLinux /dev/disk4
+```
+
 Insert the SD card and umount it.
 ```
 diskutil unmountDisk /dev/disk4
