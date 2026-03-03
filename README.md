@@ -97,7 +97,7 @@ nvme format --lbaf=1 /dev/nvme0n1
 
 Create the partitions
 
-Since we now want to introduce encryption, the best way is to include Swap and root as logical (using LVM) into p2, so that we can encrypt p2 and use a single decryption. The first sector must start with your disk sector size to avoid disallignment (mine is 4096).
+Since we now want to introduce encryption, the best way is to include Swap and root as logical (using LVM, type 44) into p2, so that we can encrypt p2 and use a single decryption. The first sector must start with your disk sector size to avoid disallignment (mine is 4096).
 ```
 fdisk /dev/nvme0n1
   g
@@ -116,9 +116,29 @@ fdisk /dev/nvme0n1
 
   t
   2
-  30
+  44
   
   w
+```
+
+Encryption
+```
+cryptsetup luksFormat --type luks2 /dev/nvme0n1p2
+```
+Type your password twice.
+
+Open the vault
+```
+cryptsetup open /dev/nvme0n1p2 cryptlvm
+```
+You can view cryptlvm vault in /dev/mapper (ls).
+
+Create physical volume, volume group and logical volumes
+```
+pvcreate /dev/mapper/cryptlvm
+vgcreate vg0 /dev/mapper/cryptlvm
+lvcreate -L 16G vg0 -n swap
+lvcreate -l 100%FREE vg0 -n root
 ```
 
 Create ext4 fs for the root partition.
