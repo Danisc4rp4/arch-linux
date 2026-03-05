@@ -318,9 +318,11 @@ Clone this repo and use the scripts to carry on the installation
 ```
 pacman -S git base-devel openssh
 ssh-keygen -t ed25519 -C "your_email@example.com"
-cat ~/.ssh/id_ed25519.pub
-# Copy this to GitHub Settings -> SSH and GPG keys
 
+# 1. Install it
+pacman -S github-cli
+
+... add auth token and add the ssh key called XPS13-Arch .. paste auth token ..
 ```
 
 
