@@ -317,12 +317,15 @@ Decrypt your drive and login with root.
 Clone this repo and use the scripts to carry on the installation
 ```
 pacman -S git base-devel openssh
-ssh-keygen -t ed25519 -C "your_email@example.com"
+ssh-keygen -t ed25519 -C "daniscarpa8593@gmail.com"
 
 # 1. Install it
 pacman -S github-cli
 
-... add auth token and add the ssh key called XPS13-Arch .. paste auth token ..
+gh auth login
+... authenticate using browser, but do it from a different device with the given code at github.com/login/device ...
+git config --global user.name "Dani"
+git config --global user.email "daniscarpa8593@gmail.com"
 ```
 
 
