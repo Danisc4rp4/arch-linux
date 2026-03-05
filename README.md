@@ -181,16 +181,22 @@ arch-chroot /mnt
 
 Create the swap file
 ```
-truncate -s 0 /swapfile
-chattr +C /swapfile
-fallocate -l 16G /swapfile
-chmod 600 /swapfile
-
-mkswap /swapfile
+btrfs filesystem mkswapfile --size 16G /swapfile
 swapon /swapfile
-
-echo "/swapfile none swap defaults 0 0" >> /etc/fstab
+exit
 ```
+
+Generate fstab
+```
+genfstab -U /mnt >> /mnt/etc/fstab
+cat /mnt/etc/fstab
+```
+If entries are duplicated, than you can safely override
+```
+genfstab -U /mnt > /mnt/etc/fstab
+cat /mnt/etc/fstab
+```
+Last line must be /swapfile
 
 Set the system time.
 ```
