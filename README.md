@@ -328,9 +328,16 @@ git config --global user.name "Dani"
 git config --global user.email "daniscarpa8593@gmail.com"
 ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts
 git clone git@github.com:Danisc4rp4/arch-linux.git
+cd arch-linux
+ssh-agent -s
+ssh-add ~/.ssh/id_ed25519
 ```
 
-
+Run script 00-setup-user.sh
+```
+chmode +x *.sh
+sh 00-setup-user.sh
+```
 
 
 
