@@ -159,7 +159,7 @@ mount /dev/nvme0n1p1 /mnt/boot
 
 Install the packages base, linux kernel and firmware.
 ```
-pacstrap -K /mnt base linux linux-firmware btrfs-progs intel-ucode neovim networkmanager
+pacstrap -K /mnt base linux linux-firmware btrfs-progs intel-ucode vim networkmanager compsize
 ```
 
 Create the fstab file, the table of partitions with UUID, directory, fs type, fs check (0 disabled, 1 root, 2 other)
