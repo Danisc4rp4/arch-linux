@@ -157,6 +157,13 @@ mkfs.fat -F 32 /dev/nvme0n1p1
 mount /dev/nvme0n1p1 /mnt/boot
 ```
 
+Before pacstrap create /etc/vconsole.conf in chroot
+```
+arch-chroot /mnt
+echo "KEYMAP=uk" > /etc/vconsole.conf
+exit
+```
+
 Install the packages base, linux kernel and firmware.
 ```
 pacstrap -K /mnt base linux linux-firmware btrfs-progs intel-ucode vim networkmanager compsize
