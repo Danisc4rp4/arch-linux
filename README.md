@@ -129,14 +129,14 @@ Type your password twice.
 
 Open the vault
 ```
-cryptsetup open /dev/nvme0n1p2 cryptlvm
+cryptsetup open /dev/nvme0n1p2 cryptbtrfs
 ```
 You can view cryptlvm vault in /dev/mapper (ls).
 
 Create physical volume, volume group and logical volumes
 ```
-mkfs.btrfs -L ARCH /dev/mapper/cryptlvm
-mount /dev/mapper/cryptlvm /mnt
+mkfs.btrfs -L ARCH /dev/mapper/cryptbtrfs
+mount /dev/mapper/cryptbtrfs /mnt
 btrfs subvolume create /mnt/@
 btrfs subvolume create /mnt/@home
 btrfs subvolume create /mnt/@log
