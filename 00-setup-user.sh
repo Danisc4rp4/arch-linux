@@ -36,5 +36,5 @@ WORKSPACE=/home/$NEW_USER/workspace
 mkdir -p $WORKSPACE
 mv /root/arch-linux $WORKSPACE
 
-su $NEW_USER -c "cd $WORKSPACE && bash"
+su $NEW_USER -c "cd $WORKSPACE/arch-linux && bash"
 
