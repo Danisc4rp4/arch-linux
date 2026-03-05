@@ -198,6 +198,14 @@ cat /mnt/etc/fstab
 ```
 Last line must be /swapfile
 
+Chroot again and setup mkinitcpio
+```
+arch-chroot /mnt
+vim /etc/mkinitcpio.conf
+... Change HUKS HOOKS=(base systemd autodetect microcode modconf kms sd-vconsole keyboard sd-encrypt block filesystems btrfs).. save
+mkinitcpio -P
+```
+
 Set the system time.
 ```
 ln -sf /usr/share/zoneinfo/Europe/Oslo /etc/localtime
