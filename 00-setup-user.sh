@@ -25,16 +25,18 @@ passwd $NEW_USER
 SSH_FOLDER=/home/$NEW_USER/.ssh
 mkdir -p $SSH_FOLDER
 cp /root/.ssh/* $SSH_FOLDER
-# Change the owner of .ssh and subfolders to user
-chown -R "$NEW_USER:$NEW_USER" $SSH_FOLDER
 # Change access of .ssh folder to only user can access
 chmod 700 $SSH_FOLDER
 # Change access of ssh keys to only user can read and write
 chmod 600 $SSH_FOLDER/*
 
+
 WORKSPACE=/home/$NEW_USER/workspace
 mkdir -p $WORKSPACE
 mv /root/arch-linux $WORKSPACE
+
+# Change the owner of home and subfolders to user
+chown -R "$NEW_USER:$NEW_USER" /home/$NEW_USER
 
 su $NEW_USER -c "cd $WORKSPACE/arch-linux && bash"
 
