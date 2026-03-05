@@ -251,30 +251,62 @@ Enable the services for networking.
 ```
 systemctl enable systemd-resolved
 systemctl enable systemd-networkd
-```
+ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+cat <<EOF > /etc/systemd/network/25-wireless.network
+[Match]
+Name=wlan*
 
-Install boot-loader (GRUB in my case).
-```
-pacman -Sy grub efibootmgr
-grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB --removable
-```
+[Network]
+DHCP=yes
+IgnoreCarrierLoss=3s
+EOF
 
-Install iwd for Wifi connection.
-```
+systemctl restart systemd-resolved
+systemctl restart systemd-networkd
+
 pacman -Sy iwd
+mkdir -p /etc/iwd
+cat <<EOF > /etc/iwd/main.conf
+[General]
+EnableNetworkConfiguration=false
+EOF
+systemctl enable iwd
+```
+
+Install boot-loader systemd-boot
+```
+bootctl install
+vim /boot/loader/loader.conf
+... content:
+default  arch.conf
+timeout  3
+console-mode max
+editor   no
+... save
+blkid -s UUID -o value /dev/nvme0n1p2
+vim /boot/loader/entries/arch.conf
+... content
+title   Arch Linux
+linux   /vmlinuz-linux
+initrd  /intel-ucode.img
+initrd  /initramfs-linux.img
+options rd.luks.name=UUID_OF_LUKS_PARTITION=cryptbtrfs root=/dev/mapper/cryptbtrfs rootflags=subvol=@ rw
+... save
 ```
 
 Set root password.
 ```
 passwd
+sync
+exit
+umount -R /mnt
+cryptsetup close cryptbtrfs
 ```
 
 Remove the SD card.
 
-Exit chroot and reboot.
+Reboot.
 ```
-exit
-umount -R /mnt
 reboot
 ```
 
