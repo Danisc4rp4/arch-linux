@@ -41,7 +41,7 @@ time sudo dd if=archlinux-2026.03.01-x86_64.img.dmg of=/dev/rdisk4 bs=1m status=
 ```
 
 
-## Installation on my DELL XPS 13 (With encryption.. work in progress..)
+## Installation on my DELL XPS 13 (With encryption)
 
 Instructions for Dell XPS
 - Press F12 when before the Dell logo at startup.
@@ -311,6 +311,17 @@ reboot
 ```
 
 Use your Arch Linux Machine <3 <3 <3
+
+Decrypt your drive and login with root.
+
+Clone this repo and use the scripts to carry on the installation
+```
+pacman -S git base-devel openssh
+ssh-keygen -t ed25519 -C "your_email@example.com"
+cat ~/.ssh/id_ed25519.pub
+# Copy this to GitHub Settings -> SSH and GPG keys
+
+```
 
 
 
