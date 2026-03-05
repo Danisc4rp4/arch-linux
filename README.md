@@ -326,6 +326,8 @@ gh auth login
 ... authenticate using browser, but do it from a different device with the given code at github.com/login/device ...
 git config --global user.name "Dani"
 git config --global user.email "daniscarpa8593@gmail.com"
+ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts
+git clone git@github.com:Danisc4rp4/arch-linux.git
 ```
 
 
