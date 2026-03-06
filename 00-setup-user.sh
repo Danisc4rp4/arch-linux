@@ -38,5 +38,5 @@ mv /root/arch-linux $WORKSPACE
 # Change the owner of home and subfolders to user
 chown -R "$NEW_USER:$NEW_USER" /home/$NEW_USER
 
-su $NEW_USER -c "cd $WORKSPACE/arch-linux && bash"
+su $NEW_USER -c "bash"
 
