@@ -336,7 +336,13 @@ ssh-add ~/.ssh/id_ed25519
 Run script 00-setup-user.sh
 ```
 chmode +x *.sh
-sh 00-setup-user.sh
+sh 00-setup-user.sh dani
+```
+
+Change dir and run all scripts as dani
+```
+cd /home/dani/arch-linux
+sh 01-setup-user-shell.sh
 ```
 
 
