@@ -6,6 +6,7 @@ sudo pacman -Sy --noconfirm zsh zsh-completions zsh-autosuggestions
 
 # 2. Use YAY for the Nerd Font (AUR)
 echo "--- Installing Nerd Font from AUR ---"
+yay -S --noconfirm fontconfig
 yay -S --noconfirm ttf-meslo-nerd-font-powerlevel10k
 
 # Verify Zsh was actually installed
