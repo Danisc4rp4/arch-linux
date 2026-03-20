@@ -42,6 +42,10 @@ fi
 
 # Added to avoid typing the ssh key passphrase all the time
 sed -i 's/plugins=(git)/plugins=(git ssh-agent)/' ~/.zshrc
+grep -q "identities id_rsa" ~/.zshrc || echo 'zstyle :omz:plugins:ssh-agent identities id_ed25519' >> ~/.zshrc
+
+# 2. Add the lifetime (4 hours)
+grep -q "ssh-agent lifetime" ~/.zshrc || echo 'zstyle :omz:plugins:ssh-agent lifetime 4h' >> ~/.zshrc
 
 # 5. Switch Shell
 sudo chsh -s /bin/zsh "$USER"
