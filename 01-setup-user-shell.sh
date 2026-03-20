@@ -12,3 +12,5 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 # Change the theme line in .zshrc
 sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k\/powerlevel10k"/' ~/.zshrc
 
+# Change default shell to zsh for the current user
+sudo chsh -s /bin/zsh $USER
