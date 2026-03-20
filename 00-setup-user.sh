@@ -17,6 +17,12 @@ NEW_USER=$1
 # -s: set the default shell
 useradd -m -G wheel -s /bin/bash $NEW_USER
 
+# 1. Enable the wheel group in sudoers
+if grep -q "# %wheel ALL=(ALL:ALL) ALL" /etc/sudoers; then
+    echo "Enabling wheel group in sudoers..."
+    sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
+fi
+
 # Takes the password as an input.
 echo "Setting Password for $NEW_USER.."
 passwd $NEW_USER
