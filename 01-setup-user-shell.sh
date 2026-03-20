@@ -1,8 +1,12 @@
 #!/bin/bash
 
-# 1. Install Zsh and dependencies
-echo "--- Installing Zsh and Fonts ---"
-sudo pacman -Sy --noconfirm zsh zsh-completions zsh-autosuggestions ttf-meslo-nerd-font-powerlevel10k
+# 1. Install official Repo packages first
+echo "--- Installing Zsh and Completions ---"
+sudo pacman -Sy --noconfirm zsh zsh-completions zsh-autosuggestions
+
+# 2. Use YAY for the Nerd Font (AUR)
+echo "--- Installing Nerd Font from AUR ---"
+yay -S --noconfirm ttf-meslo-nerd-font-powerlevel10k
 
 # Verify Zsh was actually installed
 if [ ! -f /bin/zsh ]; then
