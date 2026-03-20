@@ -40,6 +40,9 @@ else
     sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k\/powerlevel10k"/' "$HOME/.zshrc"
 fi
 
+# Added to avoid typing the ssh key passphrase all the time
+sed -i 's/plugins=(git)/plugins=(git ssh-agent)/' ~/.zshrc
+
 # 5. Switch Shell
 sudo chsh -s /bin/zsh "$USER"
 echo "--- Shell setup complete. Please log out and back in! ---"
