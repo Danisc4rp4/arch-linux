@@ -345,6 +345,13 @@ cd /home/dani/arch-linux
 sh 01-setup-user-shell.sh
 ```
 
+Run the following command to start the p10k config
+```
+exec zsh
+```
+
+Choose your setup.
+
 
 
 
