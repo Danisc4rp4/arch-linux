@@ -1,16 +1,41 @@
 #!/bin/bash
 
+# 1. Install Zsh and dependencies
+echo "--- Installing Zsh and Fonts ---"
 sudo pacman -Sy --noconfirm zsh zsh-completions zsh-autosuggestions ttf-meslo-nerd-font-powerlevel10k
 
-# --unattended: Don't ask questions
-# --keep-zshrc: Don't overwrite any changes we already made
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
+# Verify Zsh was actually installed
+if [ ! -f /bin/zsh ]; then
+    echo "ERROR: Zsh failed to install. Check your network/pacman."
+    exit 1
+fi
 
-# Clone the P10k repo
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+# 2. Install Oh My Zsh (Unattended)
+# We check if the folder exists first to make the script "Update-friendly"
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    echo "--- Installing Oh My Zsh ---"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+else
+    echo "Oh My Zsh already installed."
+fi
 
-# Change the theme line in .zshrc
-sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k\/powerlevel10k"/' ~/.zshrc
+# 3. Configure P10k Theme
+P10K_DIR="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+if [ ! -d "$P10K_DIR" ]; then
+    echo "--- Cloning Powerlevel10k ---"
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$P10K_DIR"
+fi
 
-# Change default shell to zsh for the current user
-sudo chsh -s /bin/zsh $USER
+# 4. Final Config: Check if .zshrc exists before using 'sed'
+if [ -f "$HOME/.zshrc" ]; then
+    echo "--- Updating .zshrc theme ---"
+    sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k\/powerlevel10k"/' "$HOME/.zshrc"
+else
+    echo "ERROR: .zshrc not found. Creating a default one..."
+    cp "$HOME/.oh-my-zsh/templates/zshrc.zsh-template" "$HOME/.zshrc"
+    sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k\/powerlevel10k"/' "$HOME/.zshrc"
+fi
+
+# 5. Switch Shell
+sudo chsh -s /bin/zsh "$USER"
+echo "--- Shell setup complete. Please log out and back in! ---"
